@@ -5,49 +5,30 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${employee != null}">
-                <h2>id : ${employee.id} の従業員情報　詳細ページ</h2>
+                <h2>id : ${employee.id} の従業員情報 詳細・編集ページ</h2>
+                <p>（パスワードは変更する場合のみ入力してください）</p>
 
-                <table>
-                    <tbody>
-                        <tr>
-                            <th>社員番号</th>
-                            <td><c:out value="${employee.code}" /></td>
-                        </tr>
-                        <tr>
-                            <th>氏名</th>
-                            <td><c:out value="${employee.name}" /></td>
-                        </tr>
-                        <tr>
-                            <th>権限</th>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${employee.admin_flag == 1}">管理者</c:when>
-                                    <c:otherwise>一般</c:otherwise>
-                                </c:choose>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>登録日時</th>
-                            <td>
-                                <fmt:formatDate value="${employee.created_at}" pattern="yyyy-MM-dd HH:mm:ss" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>更新日時</th>
-                            <td>
-                                <fmt:formatDate value="${employee.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <p><a href="<c:url value='/employees/edit?id=${employee.id}' />">この従業員情報を編集する</a></p>
+                <form method="POST" action="<c:url value='/employees/update' />">
+                    <c:import url="_form.jsp" />
+                </form>
+                <p><a href="#" onclick="confirmDestroy();"><button type="submit">削除</button></a></p>
+                <form method="POST" action="<c:url value='/employees/destroy' />">
+                    <input type="hidden" name="_token" value="${_token}" />
+                </form>
+                <script>
+                    function confirmDestroy() {
+                        if(confirm("本当に削除してよろしいですか？")) {
+                            document.forms[1].submit();
+                        }
+                    }
+                </script>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
-
-        <p><a href="<c:url value='/employees/index' />">一覧に戻る</a></p>
+        <p>
+            <a href="<c:url value='/employees/index' />">一覧に戻る</a>
+        </p>
     </c:param>
 </c:import>

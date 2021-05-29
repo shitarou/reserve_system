@@ -32,6 +32,8 @@ public class EmployeesShowServlet extends HttpServlet {
         em.close();
 
         request.setAttribute("employee", e);
+        request.setAttribute("_token",request.getSession().getId());
+        request.getSession().setAttribute("employee_id",e.getId());
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
         rd.forward(request, response);

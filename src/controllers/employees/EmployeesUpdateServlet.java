@@ -69,7 +69,7 @@ public class EmployeesUpdateServlet extends HttpServlet {
                 request.setAttribute("employee", e);
                 request.setAttribute("errors", errors);
 
-                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/edit.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/employees/show.jsp");
                 rd.forward(request, response);
             } else {
                 em.getTransaction().begin();

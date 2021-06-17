@@ -47,4 +47,9 @@ public class CustmerValidator {
 
         return "";
     }
+
+    public static List<String> validate(Custmer c, Boolean nameDuplicateCheckFlag, Boolean tell_numCheckFlag) {
+
+        return null;
+    }
 }

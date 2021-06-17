@@ -25,7 +25,19 @@ import javax.persistence.Table;
 @NamedQuery(
         name = "checkLoginNameAndTell_num",
         query = "SELECT c FROM Custmer AS c WHERE  c.name = :name AND c.tell_num = :tell_num"
-    )
+    ),
+    @NamedQuery(
+        name = "getMyCustmerName",
+        query = "SELECT COUNT(c) FROM Custmer AS c WHERE c.name = :name"
+    ),
+@NamedQuery(
+        name = "getMyCustmerTell_num",
+        query = "SELECT COUNT(c) FROM Custmer AS c WHERE c.tell_num = :tell_num"
+        ),
+@NamedQuery(
+        name = "getMyCustmerReserve_day",
+        query = "SELECT COUNT(c) FROM Custmer AS c WHERE c.reserve_day = :reserve_day"
+        )
 })
 @Entity
 public class Custmer {
@@ -52,6 +64,10 @@ public class Custmer {
 
     @Column(name="exit_time",nullable=false)
     private Timestamp exit_time;
+
+    @Column(name = "delete_flag", nullable = false)
+    private Integer delete_flag;
+
 
     public Integer getId() {
         return id;
@@ -107,6 +123,14 @@ public class Custmer {
 
     public void setExit_time(Timestamp exit_time) {
         this.exit_time = exit_time;
+    }
+
+    public Integer getDelete_flag() {
+        return delete_flag;
+    }
+
+    public void setDelete_flag(Integer delete_flag) {
+        this.delete_flag = delete_flag;
     }
 
 }

@@ -6,6 +6,7 @@
 
         <form method="POST" action="<c:url value='/custmer/create' />">
             <c:import url="_form.jsp" />
+
         </form>
 
         <p><a href="<c:url value='/custmer/calender' />">戻る</a></p>

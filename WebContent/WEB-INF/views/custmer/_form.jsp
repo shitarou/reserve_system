@@ -25,10 +25,6 @@
 <input type="text" name="peoples" />
 <br /><br />
 
-
-
 <br /><br />
-<input type="hidden" name="_token" value="${_token}" />
-<button type="submit">更新</button>
 <input type="hidden" name="_token" value="${_token}" />
 <button type="submit">登録</button>

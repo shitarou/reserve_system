@@ -62,7 +62,6 @@ public class LoginFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-
     public void init(FilterConfig fConfig) throws ServletException {
     }
 

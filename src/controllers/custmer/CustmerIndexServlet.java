@@ -27,24 +27,32 @@ public class CustmerIndexServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         int page = 1;
-        
+
+
         try{
             page = Integer.parseInt(request.getParameter("page"));
+
         } catch(NumberFormatException c) { }
         List<Custmer> custmer = em.createNamedQuery("getAllCustmer", Custmer.class)
                                      .setFirstResult(10 * (page - 1))
                                      .setMaxResults(10)
                                      .getResultList();
 
+
+
         long custmer_count = (long)em.createNamedQuery("getCustmersCount", Long.class)
                                        .getSingleResult();
 
+
+
         em.close();
-        
+
+
 
         request.setAttribute("custmer", custmer);
         request.setAttribute("custmer_count", custmer_count);
         request.setAttribute("page", page);
+
         if(request.getSession().getAttribute("flush") != null) {
             request.setAttribute("flush", request.getSession().getAttribute("flush"));
             request.getSession().removeAttribute("flush");

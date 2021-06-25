@@ -63,6 +63,7 @@ public class CalendarShowServlet extends HttpServlet {
 
         Map<Integer, ArrayList<Custmer>> customerMap = new HashMap<Integer, ArrayList<Custmer>>();
 
+
         for (int i = 0; i < CustomerList.size(); ++i) {
 
             Custmer customer = CustomerList.get(i);
@@ -74,7 +75,9 @@ public class CalendarShowServlet extends HttpServlet {
 
             // Date型からCalendar型へ
             Calendar cal = Calendar.getInstance();
+
             cal.setTime(date);
+
             // 予約日付を取得
             int reserveDay = cal.get(Calendar.DATE);
 
@@ -93,6 +96,10 @@ public class CalendarShowServlet extends HttpServlet {
             customerMap.put(reserveDay, customers);
 
         }
+        Calendar calendar = Calendar.getInstance();
+        for (int i = 0 ; i < 4 ; i++){
+            calendar.add(Calendar.MONTH, 1);
+            dispCalendar(calendar);
 
         // 週ごとのカレンダー情報を取得
         List<WeekInfo> weekList = getCalendarByWeeks(year, month, customerMap);
@@ -104,6 +111,13 @@ public class CalendarShowServlet extends HttpServlet {
         // jspに遷移
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/calendar/show.jsp");
         rd.forward(request, response);
+    }
+    }
+    private void dispCalendar(Calendar calendar) {
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        StringBuffer sb = new StringBuffer();
+        sb.append(year + month );
     }
 
     private List<Custmer> getCustomer(int year, int month) {

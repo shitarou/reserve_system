@@ -9,6 +9,6 @@
 
         </form>
 
-        <p><a href="<c:url value='/custmer/calender' />">戻る</a></p>
+        <p><a href="<c:url value='/calender/show' />">戻る</a></p>
     </c:param>
 </c:import>
